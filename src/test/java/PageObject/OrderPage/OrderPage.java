@@ -14,7 +14,27 @@ public class OrderPage
         this.chDriver = chDriver;
     }
 
-
+    private String[][] dataForOrderTest =
+            {
+            {
+                    "Иван",
+                    "Сидоров",
+                    "Улица Есенина, д.24, кв 75",
+                    "+79295553099",
+                    "Красносельская",
+                    "30.08.2023",
+                    "Позвоните на домофон",
+            },
+            {
+                    "Тимофей",
+                    "Шибаев",
+                    "Улица Пушкина, д.24, кв 75",
+                    "+79209411897",
+                    "Красносельская",
+                    "30.08.2023",
+                    "Позвоните на домофон"
+            }
+            };
     private String[] firstTestOrderData =
             {
                     "Иван",
@@ -24,7 +44,7 @@ public class OrderPage
                     "Красносельская",
                     "30.08.2023",
                     "Позвоните на домофон",
-            }; // вводимые данные для первого теста заказа
+            };
     private String [] secondTestOrderData =
             {
                     "Тимофей",
@@ -36,9 +56,9 @@ public class OrderPage
                     "Позвоните на домофон",
             };
 
-    public String[] returnFirstTestOrderData()
+    public String[][] getDataForOrderTest()
     {
-        return firstTestOrderData;
+        return dataForOrderTest;
     }
 
     public void waitLoadingElement(By element)

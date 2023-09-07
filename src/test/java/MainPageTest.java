@@ -30,27 +30,16 @@ public class MainPageTest
     {
         String[] arrOfActualHeader = new String[8];
         String[] arrOfActualBody = new String[8];
-        for (int i=0;i<locators.returnLocatorsBodyQuestionAboutImportant().length;i++)
+        for (int i=0;i<locators.getLocatorsBodyQuestionAboutImportant().length;i++)
         {
-            arrOfActualHeader[i] = TestMainPage.returnTextOfElement(locators.returnLocatorsHeaderQuestionAboutImportant()[i]);
-            TestMainPage.clicklement(locators.returnLocatorsHeaderQuestionAboutImportant()[i]);
-            TestMainPage.waitLoadingElement(locators.returnLocatorsBodyQuestionAboutImportant()[i]);
-            arrOfActualBody[i] = TestMainPage.returnTextOfElement(locators.returnLocatorsBodyQuestionAboutImportant()[i]);
+            arrOfActualHeader[i] = TestMainPage.getTextOfElement(locators.getLocatorsHeaderQuestionAboutImportant()[i]);
+            TestMainPage.clickElement(locators.getLocatorsHeaderQuestionAboutImportant()[i]);
+            TestMainPage.waitLoadingElement(locators.getLocatorsBodyQuestionAboutImportant()[i]);
+            arrOfActualBody[i] = TestMainPage.getTextOfElement(locators.getLocatorsBodyQuestionAboutImportant()[i]);
 
         }
         Assert.assertArrayEquals(arrOfActualHeader, TestMainPage.getExpectedHeaderTextsQuestionAboutImportant());
         Assert.assertArrayEquals(arrOfActualBody, TestMainPage.getExpectedBodyTextsQuestionAboutImportant());
-    }
-    @Test
-    public void checkEnabledButtonsOrder()
-    {
-        chDriver.findElement(locators.returnLocatorsButtonMainPage()[0]).click();
-        assertEquals(orderUrl, chDriver.getCurrentUrl());
-
-        chDriver.navigate().back();
-
-        chDriver.findElement(locators.returnLocatorsButtonMainPage()[1]).click();
-        assertEquals(orderUrl, chDriver.getCurrentUrl());
     }
     @Before
     public void precondition()
@@ -62,7 +51,7 @@ public class MainPageTest
         TestMainPage = new MainPage(chDriver);
         TestOrderPage = new OrderPage(chDriver);
         chDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        TestMainPage.clicklement(locators.returnLocatorCoockie());//кликаем на куки, чтобы оно не мешало
+        TestMainPage.clickElement(locators.getLocatorCoockie());//кликаем на куки, чтобы оно не мешало
 
     }
     @After

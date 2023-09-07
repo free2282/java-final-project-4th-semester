@@ -59,31 +59,31 @@ public class Locators
                     By.xpath(".//button[text()='Далее']"), //локатор для кнопки далее при заказе
                     By.xpath(".//div[@class='Order_Content__bmtHS']/div[@class='Order_Modal__YZ-d3']/div[@class ='Order_Buttons__1xGrp']/button[text()='Да']")//кнокпа да, подтверждение заказа
             }; // локаторы кнопок на стадии заказа
-    public By[] returnLocateButtonOnPageOrder()
+    public By[] getLocateButtonOnPageOrder()
     {
         return locateButtonOnPageOrder;
     }
-    public By[] returnLocatorsHeaderQuestionAboutImportant()
+    public By[] getLocatorsHeaderQuestionAboutImportant()
     {
         return locatorsHeaderQuestionAboutImportant;
     }
-    public By[] returnLocatorsBodyQuestionAboutImportant()
+    public By[] getLocatorsBodyQuestionAboutImportant()
     {
         return locatorsBodyQuestionAboutImportant;
     }
-    public By[] returnLocatorsButtonMainPage()
+    public By[] getLocatorsButtonMainPage()
     {
         return LocatorsButtonOnMainPage;
     }
-    public By returnLocatorCoockie()
+    public By getLocatorCoockie()
     {
         return coockie;
     }
-    public By[] returnInputLocateTextOfOrder()
+    public By[] getInputLocateTextOfOrder()
     {
         return inputLocateTextOfOrder;
     }
-    public By returnLocateTextOfOrdering()
+    public By getLocateTextOfOrdering()
     {
         return locateTextOfOrdering;
     }

@@ -26,39 +26,53 @@ public class OrderPageTest
     @Test
     public void checkScooterRentPositeve()
     {
-
-        TestOrderPage.clickElement(locators.returnLocatorsButtonMainPage()[0]);
-
-
-        for (int i=0;i<4;i++)
+        for (int i=0;i<2;i++)
         {
-            TestOrderPage.putTextToInput(locators.returnInputLocateTextOfOrder()[i], TestOrderPage.returnFirstTestOrderData()[i]);
-            //заполняем имя, фамилия, улица, метро, телефон.
+
+            TestOrderPage.clickElement(locators.getLocatorsButtonMainPage()[0]);
+
+
+            for (int j=0;j<4;j++)
+            {
+                TestOrderPage.putTextToInput(locators.getInputLocateTextOfOrder()[j], TestOrderPage.getDataForOrderTest()[i][j]);
+                //заполняем имя, фамилия, улица, метро, телефон.
+            }
+            TestOrderPage.putTextToInput(locators.getInputLocateTextOfOrder()[4], TestOrderPage.getDataForOrderTest()[i][4]); // вставляем станцию
+            TestOrderPage.waitMetroVisible(locators.getInputLocateTextOfOrder()[7]);
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[7]);
+
+            TestOrderPage.clickElement(locators.getLocateButtonOnPageOrder()[1]);
+
+            for (int j=5;j<7;j++)
+            {
+                TestOrderPage.putTextToInput(locators.getInputLocateTextOfOrder()[j], TestOrderPage.getDataForOrderTest()[i][j]);
+                //заполнение когда привезти и комментарий
+            }
+
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[9]); // заполнение срока аренды
+            TestOrderPage.waitLoadingElement(locators.getInputLocateTextOfOrder()[12]);
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[12]);
+
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[10]);
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[11]);
+
+            TestOrderPage.clickElement(locators.getLocateButtonOnPageOrder()[0]);//Кнопка заказать
+            TestOrderPage.clickElement(locators.getLocateButtonOnPageOrder()[2]);//Кнопка Да
+
+            chDriver.findElement(locators.getLocateTextOfOrdering()); // проверка, что появилась рамка успешнеого оформления
+            chDriver.get(mainPageUrl);
         }
-        TestOrderPage.putTextToInput(locators.returnInputLocateTextOfOrder()[4], TestOrderPage.returnFirstTestOrderData()[4]); // вставляем станцию
-        TestOrderPage.waitMetroVisible(locators.returnInputLocateTextOfOrder()[7]);
-        TestOrderPage.clickElement(locators.returnInputLocateTextOfOrder()[7]);
+    }
+    @Test
+    public void checkEnabledButtonsOrder()
+    {
+        chDriver.findElement(locators.getLocatorsButtonMainPage()[0]).click();
+        assertEquals(orderUrl, chDriver.getCurrentUrl());
 
-        TestOrderPage.clickElement(locators.returnLocateButtonOnPageOrder()[1]);
+        chDriver.navigate().back();
 
-        for (int i=5;i<7;i++)
-        {
-            TestOrderPage.putTextToInput(locators.returnInputLocateTextOfOrder()[i], TestOrderPage.returnFirstTestOrderData()[i]);
-            //заполнение когда привезти и комментарий
-        }
-
-        TestOrderPage.clickElement(locators.returnInputLocateTextOfOrder()[9]); // заполнение срока аренды
-        TestOrderPage.waitLoadingElement(locators.returnInputLocateTextOfOrder()[12]);
-        TestOrderPage.clickElement(locators.returnInputLocateTextOfOrder()[12]);
-
-        TestOrderPage.clickElement(locators.returnInputLocateTextOfOrder()[10]);
-        TestOrderPage.clickElement(locators.returnInputLocateTextOfOrder()[11]);
-
-        TestOrderPage.clickElement(locators.returnLocateButtonOnPageOrder()[0]);//Кнопка заказать
-        TestOrderPage.clickElement(locators.returnLocateButtonOnPageOrder()[2]);//Кнопка Да
-
-        chDriver.findElement(locators.returnLocateTextOfOrdering());
-
+        chDriver.findElement(locators.getLocatorsButtonMainPage()[1]).click();
+        assertEquals(orderUrl, chDriver.getCurrentUrl());
     }
 
     @Before
@@ -71,7 +85,7 @@ public class OrderPageTest
         TestMainPage = new MainPage(chDriver);
         TestOrderPage = new OrderPage(chDriver);
         chDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        TestMainPage.clicklement(locators.returnLocatorCoockie());//кликаем на куки, чтобы оно не мешало
+        TestMainPage.clickElement(locators.getLocatorCoockie());//кликаем на куки, чтобы оно не мешало
 
     }
     @After
